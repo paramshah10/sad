@@ -13,18 +13,18 @@ import {
 } from '@fortawesome/free-solid-svg-icons';
 import styled from 'styled-components';
 import device from '../responsive/Device';
-import ForecastHour from './ForecastHour';
+// import ForecastHour from './ForecastHour';
 import ResultFadeIn from './ResultFadeIn';
-import BigLabel from './BigLabel';
+// import BigLabel from './BigLabel';
 import MediumLabel from './MediumLabel';
 import SmallLabel from './SmallLabel';
 import Text from './Text';
 
 const Results = styled.div`
-  display: flex;
+  // display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-  padding: 40px 0;
+  padding: 50px 15%;
   opacity: 0;
   visibility: hidden;
   position: relative;
@@ -42,7 +42,7 @@ const CurrentWeatherWrapper = styled.div`
   justify-content: center;
   align-items: center;
   grid-template-columns: auto 1fr;
-  margin: 20px 0;
+  margin: 20px 30%;
   grid-gap: 30px;
   @media ${device.mobileL} {
     flex-basis: 50%;
@@ -61,14 +61,14 @@ const WeatherIcon = styled.div`
   font-size: 70px;
   color: #ffffff;
   @media ${device.tablet} {
-    font-size: 100px;
+    font-size: 80px;
     justify-content: flex-end;
   }
   @media ${device.laptop} {
-    font-size: 120px;
+    font-size: 100px;
   }
   @media ${device.laptopL} {
-    font-size: 140px;
+    font-size: 120px;
   }
 `;
 
@@ -76,17 +76,17 @@ const TemperatureWrapper = styled.div``;
 
 const Temperature = styled.h3`
   display: block;
-  font-size: 50px;
+  font-size: 46px;
   font-weight: 400;
   color: #ffffff;
   @media ${device.tablet} {
-    font-size: 70px;
+    font-size: 40px;
   }
   @media ${device.laptop} {
-    font-size: 90px;
+    font-size: 60px;
   }
   @media ${device.laptopL} {
-    font-size: 110px;
+    font-size: 80px;
   }
 `;
 
@@ -94,8 +94,9 @@ const WeatherDetailsWrapper = styled.div`
   flex-basis: 100%;
   display: flex;
   flex-wrap: wrap;
-  padding: 10px 0;
-  margin: 20px 0;
+  width: 100%;
+  padding: 0 0;
+  margin: 0 0;
   background-color: rgba(255, 255, 255, 0.2);
   border-radius: 10px;
   align-self: flex-start;
@@ -105,32 +106,32 @@ const WeatherDetailsWrapper = styled.div`
 `;
 
 const WeatherDetail = styled.div`
-  flex-basis: calc(100% / 3);
+  flex-basis: calc(100% / 2);
   padding: 10px;
   @media ${device.laptop} {
-    padding: 20px 10px;
+    padding: 10px 10px;
   }
 `;
 
-const ForecastWrapper = styled.div`
-  flex-basis: 100%;
-  margin: 20px 0;
-  overflow: hidden;
-`;
+// const ForecastWrapper = styled.div`
+//   flex-basis: 100%;
+//   margin: 20px 0;
+//   overflow: hidden;
+// `;
 
-const Forecast = styled.div`
-  position: relative;
-  display: flex;
-  overflow-x: scroll;
-  overflow-y: hidden;
-  scrollbar-color: lightgray #ffffff;
-  scrollbar-width: thin;
-  margin-top: 20px;
-  padding-bottom: 20px;
-  @media ${device.laptop} {
-    order: 4;
-  }
-`;
+// const Forecast = styled.div`
+//   position: relative;
+//   display: flex;
+//   overflow-x: scroll;
+//   overflow-y: hidden;
+//   scrollbar-color: lightgray #ffffff;
+//   scrollbar-width: thin;
+//   margin-top: 20px;
+//   padding-bottom: 20px;
+//   @media ${device.laptop} {
+//     order: 4;
+//   }
+// `;
 
 const Result = ({ weather }) => {
   const {
@@ -141,24 +142,24 @@ const Result = ({ weather }) => {
     main,
     temp,
     sunset,
-    sunrise,
+    // sunrise,
     humidity,
-    wind,
+    // wind,
     highestTemp,
     lowestTemp,
-    forecast,
+    // forecast,
   } = weather;
 
-  const forecasts = forecast.map(item => (
-    <ForecastHour
-      key={item.dt}
-      temp={Math.floor(item.main.temp * 1) / 1}
-      icon={item.weather[0].icon}
-      month={item.dt_txt.slice(5, 7)}
-      day={item.dt_txt.slice(8, 10)}
-      hour={item.dt_txt.slice(11, 13) * 1}
-    />
-  ));
+  // const forecasts = forecast.map(item => (
+  //   <ForecastHour
+  //     key={item.dt}
+  //     temp={Math.floor(item.main.temp * 1) / 1}
+  //     icon={item.weather[0].icon}
+  //     month={item.dt_txt.slice(5, 7)}
+  //     day={item.dt_txt.slice(8, 10)}
+  //     hour={item.dt_txt.slice(11, 13) * 1}
+  //   />
+  // ));
 
   let weatherIcon = null;
 
@@ -181,9 +182,9 @@ const Result = ({ weather }) => {
   return (
     <Results>
       <LocationWrapper>
-        <BigLabel>
+        <MediumLabel>
           {city}, {country}
-        </BigLabel>
+        </MediumLabel>
         <SmallLabel weight="400">{date}</SmallLabel>
       </LocationWrapper>
       <CurrentWeatherWrapper>
@@ -200,20 +201,20 @@ const Result = ({ weather }) => {
           <SmallLabel align="center" weight="400">
             {Math.floor(highestTemp)}&#176;
           </SmallLabel>
-          <Text align="center">Hight</Text>
+          <Text align="center">High</Text>
         </WeatherDetail>
-        <WeatherDetail>
+        {/* <WeatherDetail>
           <SmallLabel align="center" weight="400">
             {wind}mph
           </SmallLabel>
           <Text align="center">Wind</Text>
-        </WeatherDetail>
-        <WeatherDetail>
+        </WeatherDetail> */}
+        {/* <WeatherDetail>
           <SmallLabel align="center" weight="400">
             {sunrise}
           </SmallLabel>
           <Text align="center">Sunrise</Text>
-        </WeatherDetail>
+        </WeatherDetail> */}
         <WeatherDetail>
           <SmallLabel align="center" weight="400">
             {Math.floor(lowestTemp)}&#176;
@@ -233,10 +234,10 @@ const Result = ({ weather }) => {
           <Text align="center">Sunset</Text>
         </WeatherDetail>
       </WeatherDetailsWrapper>
-      <ForecastWrapper>
+      {/* <ForecastWrapper>
         <MediumLabel weight="400">Forecast</MediumLabel>
         <Forecast>{forecasts}</Forecast>
-      </ForecastWrapper>
+      </ForecastWrapper> */}
     </Results>
   );
 };

@@ -56,17 +56,23 @@ const AppTitle = styled.h1`
 const WeatherWrapper = styled.div`
   max-width: 1500px;
   margin: 0 auto;
-  height: calc(100vh - 64px);
+  height: calc(100vh - 84px);
   width: 100%;
   position: relative;
 `;
 
 class WeatherApp extends React.Component {
   state = {
-    value: '',
+    value: localStorage.getItem('city') || '',
     weatherInfo: null,
     error: false,
   };
+
+  componentDidMount() {
+    if (localStorage.getItem('city') !== '' || localStorage.getItem('city') !== null) {
+      this.handleSearchCity();
+    }
+  }
 
   handleInputChange = e => {
     this.setState({
@@ -74,9 +80,14 @@ class WeatherApp extends React.Component {
     });
   };
 
-  handleSearchCity = e => {
-    e.preventDefault();
+  handleSearchCity = () => {
     const { value } = this.state;
+    if (!value) {
+      return;
+    }
+
+    localStorage.setItem('city', value)
+
     const APIkey = process.env.REACT_APP_API_KEY;
     console.log('API key is', APIkey)
     const weather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=${APIkey}&units=metric`;
@@ -147,11 +158,7 @@ class WeatherApp extends React.Component {
     const { value, weatherInfo, error } = this.state;
     return (
       <div className="weather-app">
-        <AppTitle showLabel={(weatherInfo || error) && true}>Weather app</AppTitle>
         <WeatherWrapper>
-          <AppTitle secondary showResult={(weatherInfo || error) && true}>
-            Weather app
-          </AppTitle>
           <SearchCity
             value={value}
             showResult={(weatherInfo || error) && true}
