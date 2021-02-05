@@ -4,12 +4,13 @@ import { Link } from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
+import WeatherApp from "weather/components/Weather";
 
 export default function Index() {
   return (
     <>
       <IndexNavbar fixed />
-      <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
+      {/* <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
         <div className="container mx-auto items-center flex flex-wrap">
           <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
             <div className="pt-32 sm:pt-0">
@@ -54,9 +55,10 @@ export default function Index() {
           src={require("assets/img/pattern_react.png")}
           alt="..."
         />
-      </section>
-
-      <section className="mt-48 md:mt-40 pb-40 relative bg-gray-200">
+      </section> */}
+      <br /><br /><br /><br />
+      <section className="mt-48 pb-40 relative bg-gray-200">
+        
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -80,33 +82,7 @@ export default function Index() {
           <div className="flex flex-wrap items-center">
             <div className="w-10/12 md:w-6/12 lg:w-4/12 px-12 md:px-4 mr-auto ml-auto -mt-32">
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-600">
-                <img
-                  alt="..."
-                  src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                  className="w-full align-middle rounded-t-lg"
-                />
-                <blockquote className="relative p-8 mb-4">
-                  <svg
-                    preserveAspectRatio="none"
-                    xmlns="http://www.w3.org/2000/svg"
-                    viewBox="0 0 583 95"
-                    className="absolute left-0 w-full block h-95-px -top-94-px"
-                  >
-                    <polygon
-                      points="-30,95 583,95 583,65"
-                      className="text-blue-600 fill-current"
-                    ></polygon>
-                  </svg>
-                  <h4 className="text-xl font-bold text-white">
-                    Great for your awesome project
-                  </h4>
-                  <p className="text-md font-light mt-2 text-white">
-                    Putting together a page has never been easier than matching
-                    together pre-made components. From landing pages
-                    presentation to login areas, you can easily customise and
-                    built your pages.
-                  </p>
-                </blockquote>
+                <WeatherApp />
               </div>
             </div>
 

@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 
 import "@fortawesome/fontawesome-free/css/all.min.css";
 import "assets/styles/tailwind.css";
+// import './index.sass'
 
 // layouts
 
@@ -15,6 +16,12 @@ import Auth from "layouts/Auth.js";
 import Landing from "views/Landing.js";
 import Profile from "views/Profile.js";
 import Index from "views/Index.js";
+
+//firebase
+import firebase from 'firebase/app';
+import firebaseConfig from 'lib/firebaseConfig'
+
+firebase.initializeApp(firebaseConfig)
 
 ReactDOM.render(
   <BrowserRouter>
