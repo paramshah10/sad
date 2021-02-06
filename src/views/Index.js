@@ -6,16 +6,27 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import WeatherApp from "weather/components/Weather";
 
-export default function Index() {
-  const [neighbourhood_sentiment, setSentiment] = useState("positive")
+export default function Index(props) {
+  const [neighbourhood_sentiment, setSentiment] = useState("nuetral")
+  const [city, setCity] = useState("")
   let gradient;
 
   if (neighbourhood_sentiment === "positive") gradient = "from-green-400 via-green-450 to-green-500";
   else if (neighbourhood_sentiment === "nuetral") gradient = "from-gray-400 via-gray-450 to-gray-500";
   else gradient = "from-red-400 via-red-450 to-red-500";
 
-  const fetchSentimentData = (city) => {
-    console.log('fetching data for', city);
+  if (city)
+    props.db.collection("sentiment").doc(city)
+      .onSnapshot((doc) => {
+        setSentiment(doc.data().overall_sentiment);
+      });
+
+  const fetchSentimentData = async (city) => {
+    setCity(city);
+    const ref = props.db.collection('sentiment').doc(city);
+    const data = (await ref.get()).data();
+    
+    setSentiment(data.overall_sentiment);
   }
 
   return (
