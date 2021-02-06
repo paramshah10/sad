@@ -20,9 +20,12 @@ import Index from "views/Index.js";
 
 //firebase
 import firebase from 'firebase/app';
+import 'firebase/firestore';
 import firebaseConfig from 'lib/firebaseConfig'
 
 firebase.initializeApp(firebaseConfig)
+
+const db = firebase.firestore();
 
 ReactDOM.render(
   <BrowserRouter>
@@ -33,9 +36,9 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/" exact component={Index} />
+      <Route path="/" exact render={props => <Index {...props} db={db} />} />
       {/* add redirect for first page */}
-      <Redirect from="*" to="/" />
+      <Redirect from="*" to="/auth" />
     </Switch>
   </BrowserRouter>,
   document.getElementById("root")

@@ -40,7 +40,7 @@ class WeatherApp extends React.Component {
 
     const APIkey = process.env.REACT_APP_API_KEY;
     
-    const weather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=${APIkey}&units=metric`;
+    const weather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&APPID=${APIkey}&units=imperial`;
     
     fetch(weather)
       .then(async (res) => {
