@@ -65,16 +65,22 @@ const SearchIcon = styled.span`
   }
 `;
 
+const SearchBarWrapper = styled.div`
+  position: absolute;
+  left: 125%;
+  min-width: 600px;
+`;
+
 const SearchCity = ({ submit, value, change, showResult }) => {
   return (
-    <>
+    <SearchBarWrapper>
       <SearchBar showResult={showResult} onSubmit={submit}>
         <SearchInput type="text" value={value} placeholder="Enter city" onChange={change} />
         <SearchIcon>
           <FontAwesomeIcon icon={faSearch} />
         </SearchIcon>
       </SearchBar>
-    </>
+    </SearchBarWrapper>
   );
 };
 

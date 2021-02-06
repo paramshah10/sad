@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -7,58 +7,49 @@ import Footer from "components/Footers/Footer.js";
 import WeatherApp from "weather/components/Weather";
 
 export default function Index() {
+  const [neighbourhood_sentiment, setSentiment] = useState("positive")
+  let gradient;
+
+  if (neighbourhood_sentiment === "positive") gradient = "from-green-400 via-green-450 to-green-500";
+  else if (neighbourhood_sentiment === "nuetral") gradient = "from-gray-400 via-gray-450 to-gray-500";
+  else gradient = "from-red-400 via-red-450 to-red-500";
+
+  const fetchSentimentData = (city) => {
+    console.log('fetching data for', city);
+  }
+
   return (
     <>
       <IndexNavbar fixed />
-      {/* <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
-        <div className="container mx-auto items-center flex flex-wrap">
-          <div className="w-full md:w-8/12 lg:w-6/12 xl:w-6/12 px-4">
-            <div className="pt-32 sm:pt-0">
-              <h2 className="font-semibold text-4xl text-gray-700">
-                Notus React - A beautiful extension for Tailwind CSS.
-              </h2>
-              <p className="mt-4 text-lg leading-relaxed text-gray-600">
-                Notus React is Free and Open Source. It does not change or add
-                any CSS to the already one from{" "}
-                <a
-                  href="https://tailwindcss.com/?ref=creativetim"
-                  className="text-gray-700"
-                  target="_blank"
-                >
-                  Tailwind CSS
-                </a>
-                . It features multiple HTML elements and it comes with dynamic
-                components for ReactJS, Vue and Angular.
-              </p>
-              <div className="mt-12">
-                <a
-                  href="https://www.creative-tim.com/learning-lab/tailwind/react/overview/notus?ref=nr-index"
-                  target="_blank"
-                  className="get-started text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-blue-500 active:bg-blue-600 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                >
-                  Get started
-                </a>
-                <a
-                  href="https://github.com/creativetimofficial/notus-react?ref=nr-index"
-                  className="github-star ml-1 text-white font-bold px-6 py-4 rounded outline-none focus:outline-none mr-1 mb-1 bg-gray-800 active:bg-gray-700 uppercase text-sm shadow hover:shadow-lg ease-linear transition-all duration-150"
-                  target="_blank"
-                >
-                  Github Star
-                </a>
-              </div>
-            </div>
+      <section className="flex flex-wrap mt-24">
+        <div className="w-full lg:w-6/12 h-100">
+          <div className="relative bg-white shadow-lg rounded-lg bg-blue-600 rounded md:w-8/12 mr-auto ml-auto">
+            <WeatherApp fetchSentimentData={fetchSentimentData}/>
           </div>
         </div>
 
-        <img
-          className="absolute top-0 b-auto right-0 pt-16 sm:w-6/12 -mt-48 sm:mt-0 w-10/12 max-h-860px"
-          src={require("assets/img/pattern_react.png")}
-          alt="..."
-        />
-      </section> */}
-      <br /><br /><br /><br />
+        <div className="w-full lg:w-6/12 py-40">
+          <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
+            <div className="mt-20 px-4 py-5">
+              <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                <i className="fas fa-sitemap"></i>
+              </div>
+              <h6 className="text-xl mb-1 font-semibold">
+                CSS Components
+              </h6>
+              <p className="mb-4 text-gray-600">
+                Notus React comes with a huge number of Fully Coded CSS
+                components.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+      
+      {/* <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
+      </section>  */}
+
       <section className="mt-48 pb-40 relative bg-gray-200">
-        
         <div
           className="-mt-20 top-0 bottom-auto left-0 right-0 w-full absolute h-20"
           style={{ transform: "translateZ(0)" }}
@@ -80,11 +71,11 @@ export default function Index() {
         </div>
         <div className="container mx-auto">
           <div className="flex flex-wrap items-center">
-            <div className="w-10/12 md:w-6/12 px-12 md:px-4 mr-auto ml-auto -mt-48"> {/* lg:w-4/12 */}
+            {/* <div className="w-10/12 md:w-6/12 px-12 md:px-4 mr-auto ml-auto -mt-48"> lg:w-4/12
               <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-600 rounded">
                 <WeatherApp />
               </div>
-            </div>
+            </div> */}
 
             <div className="w-full md:w-6/12 px-4">
               <div className="flex flex-wrap">
@@ -245,7 +236,8 @@ export default function Index() {
                     href="https://www.creative-tim.com/learning-lab/tailwind/svelte/alerts/notus?ref=vtw-index"
                     target="_blank"
                   >
-                    <div className="bg-red-600 shadow-lg rounded-lg text-center p-8">
+                    
+                    <div className="bg-gradient-to-r from-purple-400 via-pink-500 to-red-500 shadow-lg rounded-lg text-center p-8">
                       <img
                         alt="..."
                         className="shadow-md rounded-full max-w-full w-16 mx-auto p-2 bg-white"
