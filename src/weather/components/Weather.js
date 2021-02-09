@@ -21,7 +21,7 @@ class WeatherApp extends React.Component {
   };
 
   componentDidMount() {
-    if (localStorage.getItem('city') !== '' || localStorage.getItem('city') !== null) {
+    if (localStorage.getItem('city') !== '' && localStorage.getItem('city') !== null) {
       this.handleSearchCity();
     }
   }
@@ -32,11 +32,13 @@ class WeatherApp extends React.Component {
     });
   };
 
-  handleSearchCity = () => {
+  handleSearchCity = (e) => {
+    if (e) e.preventDefault();
+
     const { value } = this.state;
-    if (!value) {
-      return;
-    }
+    // if (!value) {
+    //   return;
+    // }
 
     const APIkey = process.env.REACT_APP_API_KEY;
     

@@ -22,7 +22,8 @@ export default function Register(props) {
         let user = userDoc.user;
         props.db.collection('users').doc(user.uid).set({
           first_name: firstName,
-          last_name: lastName
+          last_name: lastName,
+          email: email,
         })
       })
       .catch((error) => {
