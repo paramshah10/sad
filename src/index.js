@@ -41,7 +41,7 @@ ReactDOM.render(
       {/* add routes without layouts */}
       <Route path="/landing" exact component={Landing} />
       <Route path="/profile" exact component={Profile} />
-      <Route path="/" exact render={props => <Index {...props} db={db} />} />
+      <Route path="/" exact render={props => <Index {...props} db={db} auth={auth} />} />
       {/* add redirect for first page */}
       <Redirect from="*" to="/login" />
     </Switch>

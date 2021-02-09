@@ -6,6 +6,10 @@ import IndexNavbar from "components/Navbars/IndexNavbar.js";
 import Footer from "components/Footers/Footer.js";
 import WeatherApp from "weather/components/Weather";
 
+import SentimentChart from "./SentimentChart";
+import SomeChart from "./SomeChart";
+import Onboard from "./Onboard";
+
 export default function Index(props) {
   const [neighbourhood_sentiment, setSentiment] = useState("nuetral")
   const [city, setCity] = useState("")
@@ -31,6 +35,7 @@ export default function Index(props) {
 
   return (
     <>
+      <Onboard />
       <IndexNavbar fixed />
       <section className="flex flex-wrap mt-24">
         <div className="w-full lg:w-6/12 h-100">
@@ -81,76 +86,27 @@ export default function Index(props) {
           </svg>
         </div>
         <div className="container mx-auto">
-          <div className="flex flex-wrap items-center">
-            {/* <div className="w-10/12 md:w-6/12 px-12 md:px-4 mr-auto ml-auto -mt-48"> lg:w-4/12
-              <div className="relative flex flex-col min-w-0 break-words bg-white w-full mb-6 shadow-lg rounded-lg bg-blue-600 rounded">
-                <WeatherApp />
-              </div>
-            </div> */}
-
+          <div className="flex flex-wrap">
+            <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 -mt-20">
+              <SentimentChart city={ localStorage.getItem('city') }/>
+            </div>
+            <div className="w-full xl:w-4/12 px-4 -mt-20">
+              <SomeChart />
+            </div>
+          </div>
+          {/* <div className="flex flex-wrap items-center">
+            
             <div className="w-full md:w-6/12 px-4">
               <div className="flex flex-wrap">
                 <div className="w-full md:w-6/12 px-4">
-                  <div className="relative flex flex-col mt-4">
-                    <div className="px-4 py-5 flex-auto">
-                      <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-sitemap"></i>
-                      </div>
-                      <h6 className="text-xl mb-1 font-semibold">
-                        CSS Components
-                      </h6>
-                      <p className="mb-4 text-gray-600">
-                        Notus React comes with a huge number of Fully Coded CSS
-                        components.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative flex flex-col min-w-0">
-                    <div className="px-4 py-5 flex-auto">
-                      <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-drafting-compass"></i>
-                      </div>
-                      <h6 className="text-xl mb-1 font-semibold">
-                        JavaScript Components
-                      </h6>
-                      <p className="mb-4 text-gray-600">
-                        We also feature many dynamic components for React,
-                        NextJS, Vue and Angular.
-                      </p>
-                    </div>
-                  </div>
+                  
                 </div>
                 <div className="w-full md:w-6/12 px-4">
-                  <div className="relative flex flex-col min-w-0 mt-4">
-                    <div className="px-4 py-5 flex-auto">
-                      <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-newspaper"></i>
-                      </div>
-                      <h6 className="text-xl mb-1 font-semibold">Pages</h6>
-                      <p className="mb-4 text-gray-600">
-                        This extension also comes with 3 sample pages. They are
-                        fully coded so you can start working instantly.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="relative flex flex-col min-w-0">
-                    <div className="px-4 py-5 flex-auto">
-                      <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                        <i className="fas fa-file-alt"></i>
-                      </div>
-                      <h6 className="text-xl mb-1 font-semibold">
-                        Documentation
-                      </h6>
-                      <p className="mb-4 text-gray-600">
-                        Built by developers for developers. You will love how
-                        easy is to to work with Notus React.
-                      </p>
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
 
         <div className="container mx-auto overflow-hidden pb-20">
