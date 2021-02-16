@@ -16,7 +16,7 @@ export default function Index(props) {
   let gradient;
 
   if (neighbourhood_sentiment === "positive") gradient = "from-green-400 via-green-450 to-green-500";
-  else if (neighbourhood_sentiment === "nuetral") gradient = "from-gray-400 via-gray-450 to-gray-500";
+  else if (neighbourhood_sentiment === "neutral") gradient = "from-gray-400 via-gray-450 to-gray-500";
   else gradient = "from-red-400 via-red-450 to-red-500";
 
   if (city)
@@ -33,9 +33,20 @@ export default function Index(props) {
     setSentiment(data.overall_sentiment);
   }
 
+  const [onboard, setOnboard] = useState(localStorage.getItem('onboarded') === "true" || false)
+
+  const toggleOnboard = () => {
+    localStorage.setItem('onboarded', true)
+    setOnboard(!onboard);
+  }
+
+  if (!onboard) {
+    return (
+      <Onboard toggleOnboard={toggleOnboard} />
+    )
+  }
   return (
     <>
-      <Onboard />
       <IndexNavbar fixed />
       <section className="flex flex-wrap mt-24">
         <div className="w-full lg:w-6/12 h-100">
@@ -47,16 +58,18 @@ export default function Index(props) {
         <div className="w-full lg:w-6/12 py-40">
           <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
             <div className="mt-20 px-4 py-5">
-              <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+              {/* <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                 <i className="fas fa-sitemap"></i>
-              </div>
+              </div> */}
               <h6 className="text-xl mb-1 font-semibold">
-                CSS Components
+                {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
               </h6>
-              <p className="mb-4 text-gray-600">
-                Notus React comes with a huge number of Fully Coded CSS
-                components.
+              {city ? <p className="mb-4 mt-4 text-gray-600">
+                {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
+                {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
+                {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
               </p>
+                : <p style={{color: "white"}} className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
             </div>
           </div>
         </div>
@@ -108,7 +121,7 @@ export default function Index(props) {
             </div>
           </div> */}
         </div>
-
+        {/*
         <div className="container mx-auto overflow-hidden pb-20">
           <div className="flex flex-wrap items-center">
             <div className="w-full md:w-4/12 px-12 md:px-4 ml-auto mr-auto mt-48">
@@ -594,9 +607,9 @@ export default function Index(props) {
               <div className="text-center mt-16"></div>
             </div>
           </div>
-        </div>
+        </div>*/}
       </section>
-      <Footer />
+      {/* <Footer /> */}
     </>
   );
 }
