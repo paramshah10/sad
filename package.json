@@ -1,6 +1,8 @@
 {
   "name": "sad",
   "version": "1.0.0",
+  "private": true,
+  "homepage": "https://paramshah10.github.io/sad/",
   "repository": "https://github.com/paramshah10/sad",
   "dependencies": {
     "@fortawesome/fontawesome-free": "5.14.0",

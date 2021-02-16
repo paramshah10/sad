@@ -9,6 +9,7 @@ import WeatherApp from "weather/components/Weather";
 import SentimentChart from "./SentimentChart";
 import SomeChart from "./SomeChart";
 import Onboard from "./Onboard";
+import HappyOrNot from "components/happy_or_not";
 
 export default function Index(props) {
   const [neighbourhood_sentiment, setSentiment] = useState("nuetral")
@@ -47,6 +48,7 @@ export default function Index(props) {
   }
   return (
     <>
+      <HappyOrNot />
       <IndexNavbar fixed />
       <section className="flex flex-wrap mt-24">
         <div className="w-full lg:w-6/12 h-100">
