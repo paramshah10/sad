@@ -1936,6 +1936,11 @@ video {
   padding-bottom: 6rem;
 }
 
+.py-32 {
+  padding-top: 8rem;
+  padding-bottom: 8rem;
+}
+
 .py-40 {
   padding-top: 10rem;
   padding-bottom: 10rem;
@@ -2009,6 +2014,10 @@ video {
   padding-right: 3rem;
 }
 
+.pl-12 {
+  padding-left: 3rem;
+}
+
 .pb-12 {
   padding-bottom: 3rem;
 }
@@ -2019,6 +2028,10 @@ video {
 
 .pb-16 {
   padding-bottom: 4rem;
+}
+
+.pl-20 {
+  padding-left: 4rem;
 }
 
 .pt-20 {

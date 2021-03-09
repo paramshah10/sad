@@ -62,7 +62,26 @@ export default function Index(props) {
           </div>
         </div>
 
-        <div className="w-full lg:w-6/12 py-40">
+        <div className="w-full lg:w-6/12 py-32 pl-20">
+          <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
+            <div className="mt-20 px-4 py-5">
+              {/* <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
+                <i className="fas fa-sitemap"></i>
+              </div> */}
+              <h6 className="text-xl mb-1 font-semibold">
+                {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
+              </h6>
+              {city ? <p className="mb-4 mt-4 text-white">
+                {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
+                {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
+                {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
+              </p>
+                : <p style={{color: "white"}} className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
+            </div>
+          </div>
+
+          <br /> <br /> <br />
+          
           <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
             <div className="mt-20 px-4 py-5">
               {/* <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
@@ -80,6 +99,7 @@ export default function Index(props) {
             </div>
           </div>
         </div>
+        
       </section>
       
       {/* <section className="header relative pt-16 items-center flex h-screen max-h-860-px">
