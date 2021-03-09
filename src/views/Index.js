@@ -72,7 +72,7 @@ export default function Index(props) {
   return (
     <>
       <HappyOrNot {...props} city={city} />
-      <IndexNavbar fixed />
+      <IndexNavbar fixed {...props}/>
       <section className="flex flex-wrap mt-24">
         <div className="w-full lg:w-6/12 h-100">
           <div className="relative bg-white shadow-lg rounded-lg bg-blue-600 rounded md:w-8/12 mr-auto ml-auto">

@@ -7,6 +7,11 @@ import IndexDropdown from "components/Dropdowns/IndexDropdown.js";
 
 export default function Navbar(props) {
   const [navbarOpen, setNavbarOpen] = React.useState(false);
+
+  const trySignOut = () => {
+    props.auth.signOut();
+  }
+
   return (
     <>
       <nav className="top-0 fixed z-50 w-full flex flex-wrap items-center justify-between px-2 py-3 navbar-expand-lg bg-white shadow">
@@ -70,7 +75,7 @@ export default function Navbar(props) {
                 </a>
               </li> */}
 
-              <li className="flex items-center">
+              <li className="flex items-center" onClick={trySignOut} style={{cursor: "pointer"}}>
                 <a
                   className="hover:text-gray-600 text-gray-800 px-3 py-4 lg:py-2 flex items-center text-xs uppercase font-bold"
                   // href="https://github.com/creativetimofficial/notus-react?ref=nr-index-navbar"

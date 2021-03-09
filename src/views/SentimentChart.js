@@ -60,7 +60,7 @@ export default function SentimentChart(props) {
               <h6 className="uppercase text-gray-200 mb-1 text-xs font-semibold">
                 {props.city}
               </h6>
-              <h2 className="text-white text-xl font-semibold">Overall Sentiment</h2>
+              <h2 className="text-white text-xl font-semibold">Overall Sentiment (This week)</h2>
             </div>
           </div>
         </div>

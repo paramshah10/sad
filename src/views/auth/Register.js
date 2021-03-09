@@ -24,6 +24,7 @@ export default function Register(props) {
           first_name: firstName,
           last_name: lastName,
           email: email,
+          recorded_sentiment: "neutral"
         })
       })
       .catch((error) => {
