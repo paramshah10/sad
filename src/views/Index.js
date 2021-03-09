@@ -10,6 +10,7 @@ import SentimentChart from "./SentimentChart";
 import SomeChart from "./SomeChart";
 import Onboard from "./Onboard";
 import HappyOrNot from "components/happy_or_not";
+import CardLineChart from "components/Cards/CardLineChart";
 
 export default function Index(props) {
   const [neighbourhood_sentiment, setSentiment] = useState("nuetral")
@@ -128,10 +129,11 @@ export default function Index(props) {
         <div className="container mx-auto">
           <div className="flex flex-wrap">
             <div className="w-full xl:w-8/12 mb-12 xl:mb-0 px-4 -mt-20">
-              <SentimentChart city={ localStorage.getItem('city') }/>
+              <CardLineChart />
             </div>
             <div className="w-full xl:w-4/12 px-4 -mt-20">
-              <SomeChart />
+              {/* <SomeChart /> */}
+              <SentimentChart city={ localStorage.getItem('city') }/>
             </div>
           </div>
           {/* <div className="flex flex-wrap items-center">

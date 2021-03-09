@@ -66,7 +66,7 @@ export default function SentimentChart(props) {
         </div>
         <div className="p-4 flex-auto">
           {/* Chart */}
-          <div className="relative h-350-px">
+          <div className="p-2 relative h-350-px">
             <canvas id="pie-chart"></canvas>
           </div>
         </div>

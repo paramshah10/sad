@@ -7,24 +7,24 @@ export default function CardLineChart() {
       type: "line",
       data: {
         labels: [
-          "January",
-          "February",
-          "March",
-          "April",
-          "May",
-          "June",
-          "July",
+          "Monday",
+          "Tueday",
+          "Wednesday",
+          "Thursday",
+          "Friday",
+          "Saturday",
+          "Sunday",
         ],
         datasets: [
           {
-            label: new Date().getFullYear(),
+            label: "Last Week",
             backgroundColor: "#4c51bf",
             borderColor: "#4c51bf",
             data: [65, 78, 66, 44, 56, 67, 75],
             fill: false,
           },
           {
-            label: new Date().getFullYear() - 1,
+            label: "This Week",
             fill: false,
             backgroundColor: "#fff",
             borderColor: "#fff",
@@ -113,9 +113,9 @@ export default function CardLineChart() {
           <div className="flex flex-wrap items-center">
             <div className="relative w-full max-w-full flex-grow flex-1">
               <h6 className="uppercase text-gray-200 mb-1 text-xs font-semibold">
-                Overview
+                Personal
               </h6>
-              <h2 className="text-white text-xl font-semibold">Sales value</h2>
+              <h2 className="text-white text-xl font-semibold">Sentiment Value</h2>
             </div>
           </div>
         </div>
