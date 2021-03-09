@@ -24,7 +24,7 @@
     "react-router-dom": "5.2.0",
     "react-scripts": "3.4.3",
     "styled-components": "^5.0.1",
-    "tailwindcss": "1.8.10"
+    "tailwindcss": "^1.8.10"
   },
   "scripts": {
     "start": "react-scripts start",

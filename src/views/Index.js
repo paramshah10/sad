@@ -1,5 +1,5 @@
 /*eslint-disable*/
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 
 import IndexNavbar from "components/Navbars/IndexNavbar.js";
@@ -41,6 +41,11 @@ export default function Index(props) {
     setOnboard(!onboard);
   }
 
+  useEffect(() => {
+    window.focus();
+    window.scrollTo(0, 0)
+  }, [])
+
   if (!onboard) {
     return (
       <Onboard toggleOnboard={toggleOnboard} />
@@ -48,7 +53,7 @@ export default function Index(props) {
   }
   return (
     <>
-      <HappyOrNot />
+      <HappyOrNot {...props} city={city} />
       <IndexNavbar fixed />
       <section className="flex flex-wrap mt-24">
         <div className="w-full lg:w-6/12 h-100">
@@ -66,7 +71,7 @@ export default function Index(props) {
               <h6 className="text-xl mb-1 font-semibold">
                 {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
               </h6>
-              {city ? <p className="mb-4 mt-4 text-gray-600">
+              {city ? <p className="mb-4 mt-4 text-white">
                 {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
                 {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
                 {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
