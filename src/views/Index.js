@@ -13,13 +13,20 @@ import HappyOrNot from "components/happy_or_not";
 import CardLineChart from "components/Cards/CardLineChart";
 
 export default function Index(props) {
-  const [neighbourhood_sentiment, setSentiment] = useState("nuetral")
-  const [city, setCity] = useState("")
-  let gradient;
+  const [neighbourhood_sentiment, setSentiment] = useState("neutral")
+  const [user_sentiment, setUserSentiment] = useState("neutral")
 
-  if (neighbourhood_sentiment === "positive") gradient = "from-green-400 via-green-450 to-green-500";
-  else if (neighbourhood_sentiment === "neutral") gradient = "from-gray-400 via-gray-450 to-gray-500";
-  else gradient = "from-red-400 via-red-450 to-red-500";
+  const [city, setCity] = useState("")
+  // let gradient;
+  let user_gradient;
+
+  // if (neighbourhood_sentiment === "positive") gradient = "from-green-400 via-green-450 to-green-500";
+  // else if (neighbourhood_sentiment === "neutral") gradient = "from-gray-400 via-gray-450 to-gray-500";
+  // else gradient = "from-red-400 via-red-450 to-red-500";
+
+  if (user_sentiment === "positive") user_gradient = "from-green-400 via-green-450 to-green-500";
+  else if (user_sentiment === "neutral") user_gradient = "from-gray-400 via-gray-450 to-gray-500";
+  else user_gradient = "from-red-400 via-red-450 to-red-500";
 
   if (city)
     props.db.collection("sentiment").doc(city)
@@ -36,6 +43,16 @@ export default function Index(props) {
   }
 
   const [onboard, setOnboard] = useState(localStorage.getItem('onboarded') === "true" || false)
+
+  props.auth.onAuthStateChanged((user) => {
+    if (user) {
+      console.log(user)
+      props.db.collection("users").doc(user.uid)
+      .onSnapshot((doc) => {
+        setUserSentiment(doc.data().estimated_sentiment);
+      });
+    }
+  })
 
   const toggleOnboard = () => {
     localStorage.setItem('onboarded', true)
@@ -63,43 +80,66 @@ export default function Index(props) {
           </div>
         </div>
 
-        <div className="w-full lg:w-6/12 py-32 pl-20">
-          <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
-            <div className="mt-20 px-4 py-5">
-              {/* <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
-                <i className="fas fa-sitemap"></i>
-              </div> */}
-              <h6 className="text-xl mb-1 font-semibold">
-                {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
-              </h6>
-              {city ? <p className="mb-4 mt-4 text-white">
-                {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
-                {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
-                {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
-              </p>
-                : <p style={{color: "white"}} className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
-            </div>
+        <div className="pt-32 pl-20">
+          <div className="relative">
+            <img
+              alt="..."
+              src={require(`assets/img/${neighbourhood_sentiment}.jpg`)}
+              className="shadow-xl rounded-full h-auto align-middle border-none absolute -ml-20 lg:-ml-16 max-w-150-px"
+            />
+          </div>
+          
+          <div className="mt-6 ml-32 p-4 shadow">
+            <h6 className="text-xl mb-1 font-semibold">
+              {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
+            </h6>
+            {city ? <p className="mb-4 mt-4">
+              {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
+              {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
+              {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
+            </p>
+                : <p className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
           </div>
 
-          <br /> <br /> <br />
-          
-          <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
+          <div className={`inline-block bg-gradient-to-r ${user_gradient} px-4 shadow-lg rounded mt-24`}>
             <div className="mt-20 px-4 py-5">
               {/* <div className="text-gray-600 p-3 text-center inline-flex items-center justify-center w-12 h-12 mb-5 shadow-lg rounded-full bg-white">
                 <i className="fas fa-sitemap"></i>
               </div> */}
               <h6 className="text-xl mb-1 font-semibold">
-                {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
+                Overall Estimated Sentiment for you
               </h6>
               {city ? <p className="mb-4 mt-4 text-white">
-                {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
-                {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
-                {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
+                {user_sentiment === "negative" && "Red means overall sentiment was estimated to be negative"}
+                {user_sentiment === "neutral" && "Gray means overall sentiment was estimated to be neutral"}
+                {user_sentiment === "positive" && "Green means overall sentiment was estimated to be positive"}
+                <br />
+                Learn how the value is calculated <a href="#">here</a>.
               </p>
-                : <p style={{color: "white"}} className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
+                : <p style={{ color: "white" }} className="mt-4 mb-4"> Overall sentiment of you will be displayed here after you select a location.
+                This value depends on your location and your sentiment data.</p>}
             </div>
           </div>
         </div>
+
+        {/*<div className="w-full lg:w-6/12 py-32 pl-20">
+           <div className={`inline-block bg-gradient-to-r ${gradient} px-4 shadow-lg rounded`}>
+            <div className="mt-20 px-4 py-5">
+              <h6 className="text-xl mb-1 font-semibold">
+                {city ? `Overall Sentiment of ${city}` : `Overall Sentiment`}
+              </h6>
+              {city ? <p className="mb-4 mt-4 text-white">
+                {neighbourhood_sentiment === "negative" && "Red means overall sentiment was recorded to be negative"}
+                {neighbourhood_sentiment === "neutral" && "Gray means overall sentiment was recorded to be neutral"}
+                {neighbourhood_sentiment === "positive" && "Green means overall sentiment was recorded to be positive"}
+              </p>
+                : <p style={{color: "white"}} className="mt-4 mb-4"> Overall sentiment of your location will be displayed here after you select a location</p>}
+            </div>
+          </div> 
+
+          <br /> <br /> <br />
+          
+        </div> */}
         
       </section>
       
