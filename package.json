@@ -11,7 +11,7 @@
     "@fortawesome/react-fontawesome": "^0.1.8",
     "@popperjs/core": "2.5.1",
     "@tailwindcss/custom-forms": "0.2.1",
-    "chart.js": "2.9.3",
+    "chart.js": "2.9.4",
     "firebase": "^8.2.5",
     "gulp": "4.0.2",
     "multiselect-react-dropdown": "^1.6.7",
